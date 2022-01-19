@@ -6,9 +6,9 @@ export async function middleware(req) { //request goes thru middleware
   const token = await getToken({
     req,
     secret: process.env.JWT_SECRET,
-    //secureCookie:
-    //  process.env.NEXTAUTH_URL?.startsWith("https://") ??
-    //  !!process.env.VERCEL_URL
+    secureCookie:
+      process.env.NEXTAUTH_URL?.startsWith("https://") ??
+      !!process.env.VERCEL_URL
   });
 
   const { pathname } = req.nextUrl;
