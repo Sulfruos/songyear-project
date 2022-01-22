@@ -13,6 +13,11 @@ export async function middleware(req) { //request goes thru middleware
 
   const { pathname } = req.nextUrl;
 
+  // if user is already signed in, but goes to login page, redirect to home page
+  if (token && pathname === '/login') {
+    return NextResponse.redirect('/');
+  }
+
   //allow the requests if the following is true...
   //1) its a request for the next-auth session and provider fetching
   //2) the token exists
